@@ -6,12 +6,13 @@
 <title>🎮 Rialo Tic Tac Toe ✨</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-    /* Rialo Background Image (Replace with your actual image path) */
+    /* Full page setup with Rialo Background */
     body {
         margin: 0;
         padding: 0;
         font-family: 'Poppins', sans-serif;
-        background-image: url('YOUR_RIALO_BACKGROUND_IMAGE_URL_HERE.jpg'); /* <<-- Yahan apni Rialo background image ka URL daalein */
+        /* Replace with your actual image path or URL */
+        background-image: url('https://i.imgur.com/example.png'); /* <<-- Yahan apni Rialo background image ka URL daalein */
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -20,32 +21,30 @@
         align-items: center;
         min-height: 100vh;
         color: #fff;
-        overflow: hidden; /* Prevent scroll */
-        position: relative;
+        overflow: hidden;
     }
 
-    /* Main container (Game centered on screen) */
+    /* Main container */
     .container {
-        background: rgba(0, 0, 0, 0.85); /* Slightly darker overlay for readability */
+        background: rgba(0, 0, 0, 0.85);
         border-radius: 25px;
-        padding: 30px; /* Reduced padding for more game area */
+        padding: 30px 40px;
         text-align: center;
-        box-shadow: 0 0 50px rgba(0, 255, 255, 0.5); /* Glowing effect */
-        max-width: 90vw; /* Max width relative to viewport */
-        max-height: 90vh; /* Max height relative to viewport */
-        width: fit-content; /* Adjust width based on content */
+        box-shadow: 0 0 50px rgba(0, 255, 255, 0.5);
+        max-width: 90vw;
+        width: fit-content;
         position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        border: 2px solid rgba(0, 255, 255, 0.7); /* Neon border */
+        border: 2px solid rgba(0, 255, 255, 0.7);
     }
 
     h1 {
-        font-size: 2.5em; /* Larger title */
+        font-size: 2.5em;
         margin-bottom: 20px;
-        color: #00ffff; /* Cyan glow */
+        color: #00ffff;
         text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
     }
     label { font-weight: 600; margin-right: 10px; }
@@ -57,7 +56,7 @@
         border: 1px solid #00ffff;
         cursor: pointer;
         transition: all 0.3s ease;
-        background: #1a73e8; /* Blue */
+        background: #1a73e8;
         color: #fff;
         font-weight: 600;
         box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
@@ -70,39 +69,36 @@
     }
     button { margin-top: 25px; }
 
-    /* Game board - Responsive */
+    /* Game board */
     .board {
         display: grid;
-        grid-template-columns: repeat(3, min(15vw, 120px)); /* Responsive cell size */
-        grid-gap: min(1.5vw, 15px); /* Responsive gap */
+        grid-template-columns: repeat(3, min(15vw, 110px));
+        grid-gap: min(1.5vw, 15px);
         justify-content: center;
         margin-top: 25px;
-        width: fit-content; /* Adjust board width */
-        height: fit-content;
     }
     .cell {
-        width: min(15vw, 120px); /* Responsive cell size */
-        height: min(15vw, 120px); /* Responsive cell size */
+        width: min(15vw, 110px);
+        height: min(15vw, 110px);
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: min(8vw, 3.5em); /* Responsive font size */
+        font-size: min(8vw, 3.5em);
         font-weight: bold;
         cursor: pointer;
         border-radius: 15px;
-        background: linear-gradient(45deg, #2a0c4e, #4f0a7b); /* Darker, futuristic gradient */
+        background: linear-gradient(45deg, #2a0c4e, #4f0a7b);
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
         transition: all 0.3s ease;
-        color: #00ffff; /* X and O color */
+        color: #00ffff;
         text-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
         border: 1px solid rgba(0, 255, 255, 0.3);
     }
     .cell:hover {
-        transform: scale(1.05); /* Slight hover effect */
+        transform: scale(1.05);
         box-shadow: 0 6px 20px rgba(0, 255, 255, 0.5);
         background: linear-gradient(45deg, #4f0a7b, #6a0e9a);
     }
-    /* Cell specific backgrounds (Removed original, keeping a uniform theme) */
 
     /* Scoreboard and timer */
     #scoreboard, #timer {
@@ -110,62 +106,39 @@
         font-size: 1.3em;
         font-weight: 600;
         color: #00ffff;
-        text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
     }
 
-    /* Professional Social links on right side */
+    /* Social links inside the container */
     .social-links {
-        position: fixed; /* Fixed position relative to viewport */
-        top: 50%; /* Center vertically */
-        right: 20px; /* Position on the right */
-        transform: translateY(-50%); /* Adjust for perfect vertical centering */
+        margin-top: 25px;
         display: flex;
-        flex-direction: column;
-        gap: 12px;
-        z-index: 100; /* Ensure links are above other content */
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap; /* Allows wrapping on small screens */
     }
     .social-links a {
-        color: #00ffff; /* Cyan color */
+        color: #a0ffff;
         text-decoration: none;
-        font-weight: 600;
-        background: rgba(0, 255, 255, 0.1); /* Subtle background */
-        backdrop-filter: blur(5px); /* Frosted glass effect */
+        font-weight: 500;
+        background: rgba(0, 255, 255, 0.1);
         padding: 8px 15px;
         border-radius: 10px;
         border: 1px solid rgba(0, 255, 255, 0.4);
         transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 8px; /* Space between icon and text */
-        box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
     }
     .social-links a:hover {
         background: rgba(0, 255, 255, 0.3);
-        transform: translateX(-5px) scale(1.05); /* Slight movement and scale */
-        box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        color: #fff;
+        transform: translateY(-2px);
     }
-    /* Optional: Add icons for social links */
-    .social-links a::before {
-        content: ''; /* Placeholder for icon */
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        background-size: cover;
-        /* Replace with actual icon URLs or Font Awesome */
-    }
-    .social-links a[href*="x.com"]::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/58/X_icon_2023.svg'); filter: invert(0.8) sepia(1) saturate(5) hue-rotate(180deg); } /* Inverted for light icon on dark bg */
-    .social-links a[href*="discord.gg"]::before { background-image: url('https://discord.com/assets/f8389ca166bc68803bef21048775d792.svg'); }
-    .social-links a[href*="t.me"]::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg'); }
-
 
     /* Creator credits */
     .credits {
-        margin-top: 25px;
+        margin-top: 20px;
         font-size: 0.9em;
         color: #a0ffff;
-        text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
     }
-
+    
     /* Responsive adjustments */
     @media (max-width: 768px) {
         .container {
@@ -175,26 +148,11 @@
             font-size: 1.8em;
         }
         .board {
-            grid-template-columns: repeat(3, min(25vw, 80px));
-            grid-gap: min(2vw, 10px);
+            grid-template-columns: repeat(3, min(22vw, 80px));
         }
         .cell {
-            width: min(25vw, 80px);
-            height: min(25vw, 80px);
-            font-size: min(10vw, 3em);
-        }
-        .social-links {
-            flex-direction: row; /* Stack horizontally on smaller screens */
-            position: static; /* Remove fixed position */
-            transform: none;
-            margin-top: 20px;
-            justify-content: center;
-            flex-wrap: wrap; /* Allow wrapping */
-            gap: 10px;
-        }
-        .social-links a {
-            padding: 8px 12px;
-            font-size: 0.9em;
+            width: min(22vw, 80px);
+            height: min(22vw, 80px);
         }
     }
 </style>
@@ -211,207 +169,144 @@
     </select>
 
     <div class="board">
-        <div class="cell"></div><div class="cell"></div><div class="cell"></div>
-        <div class="cell"></div><div class="cell"></div><div class="cell"></div>
-        <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="cell" data-index="0"></div><div class="cell" data-index="1"></div><div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div><div class="cell" data-index="4"></div><div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div><div class="cell" data-index="7"></div><div class="cell" data-index="8"></div>
     </div>
 
     <div id="scoreboard">Wins: 0 | Losses: 0 | Draws: 0</div>
     <div id="timer">Time left: 10s</div>
     <button onclick="resetGame()">Restart Game</button>
+    
+    <div class="social-links">
+        <a href="https://x.com/Xyzboy21" target="_blank">@Xyzboy21 (X)</a>
+        <a href="https://discord.gg/Fazu4718" target="_blank">fazu4718 (Discord)</a>
+        <a href="https://t.me/rialoprotocol" target="_blank">Telegram</a>
+    </div>
 
-    <div class="credits">Created by: @Xyzboy21 & Fazu4718</div>
-</div>
-
-<div class="social-links">
-    <a href="https://x.com/Xyzboy21" target="_blank">X / Twitter</a>
-    <a href="https://discord.gg/Fazu4718" target="_blank">Discord</a>
-    <a href="https://t.me/rialoprotocol" target="_blank">Telegram</a>
+    <div class="credits">Created by: @Xyzboy21 & fazu4718</div>
 </div>
 
 <script>
 const cells = document.querySelectorAll('.cell');
 const scoreboard = document.getElementById('scoreboard');
 const timerDisplay = document.getElementById('timer');
-let turn='X', difficulty='easy';
-let score={wins:0,losses:0,draws:0};
-let timerActive = false;
-let timerInterval; // Declare timerInterval globally or pass it
+let turn = 'X';
+let difficulty = 'easy';
+let score = { wins: 0, losses: 0, draws: 0 };
+let isGameOver = false;
 
-document.getElementById('difficulty').addEventListener('change',(e)=>{
+// Event Listeners
+document.getElementById('difficulty').addEventListener('change', (e) => {
     difficulty = e.target.value;
     resetGame();
 });
 
-function resetGame(){
-    cells.forEach(c=>c.innerHTML='');
-    turn='X';
-    timerDisplay.textContent='Time left: 10s';
-    if(timerInterval) clearInterval(timerInterval); // Clear any existing timer
-    timerActive=false;
-    // Ensure all cells are empty before starting a new game logic
-    cells.forEach(c => c.style.backgroundColor = ''); // Reset cell background colors if they change on win
-}
+cells.forEach(cell => {
+    cell.addEventListener('click', handleCellClick);
+});
 
-// Timer per move (only counts while user can play)
-function startTimer(){
-    let timeLeft=10;
-    timerActive=true;
-    timerDisplay.textContent=`Time left: ${timeLeft}s`;
-    if(timerInterval) clearInterval(timerInterval); // Clear previous timer
-    timerInterval = setInterval(()=>{
-        if(!timerActive){ clearInterval(timerInterval); return; }
-        timeLeft--;
-        timerDisplay.textContent=`Time left: ${timeLeft}s`;
-        if(timeLeft<=0){
-            clearInterval(timerInterval);
-            timerActive=false;
-            // Optionally, handle timeout as a loss or AI move
-            if (turn === 'X') { // If player's turn timed out
-                alert('Time out! You lose!');
-                score.losses++;
-                updateScore();
-                resetGame();
-            }
-        }
-    },1000);
-}
-
-function makeMove(cell){
-    if(cell.innerHTML===''){
-        cell.innerHTML=turn;
-        if(timerInterval) clearInterval(timerInterval); // Stop timer immediately after move
-        timerActive=false;
-        
-        checkResult();
-        if(!checkWinner('X') && !checkWinner('O') && Array.from(cells).filter(c=>c.innerHTML==='').length > 0){
-             setTimeout(()=>{ aiMove(); }, 700); // Slight delay for AI move for better UX
-        } else if (Array.from(cells).every(c=>c.innerHTML!=='') && !checkWinner('X') && !checkWinner('O')) {
-             // Handle draw if no empty cells left and no winner
-             alert('Draw!');
-             score.draws++;
-             updateScore();
-             resetGame();
+function handleCellClick(event) {
+    const cell = event.target;
+    // Player can only move if it's their turn, the cell is empty, and the game is not over
+    if (turn === 'X' && cell.innerHTML === '' && !isGameOver) {
+        makeMove(cell, 'X');
+        // If the game is not over after the player's move, let the AI move
+        if (!isGameOver) {
+            turn = 'O'; // Switch turn to AI
+            setTimeout(aiMove, 600); // AI moves after a short delay
         }
     }
 }
 
-cells.forEach(c=>c.addEventListener('click',(event)=>{
-    if(turn === 'X' && !timerActive && event.target.innerHTML === '') startTimer(); // Start timer only on player's first click for the turn
-    makeMove(event.target);
-}));
+function makeMove(cell, player) {
+    cell.innerHTML = player;
+    if (checkWinner(player)) {
+        setTimeout(() => { // Delay alert to show the winning move
+            alert(player === 'X' ? 'You Win!' : 'You Lose!');
+            player === 'X' ? score.wins++ : score.losses++;
+            updateScore();
+            resetGame();
+        }, 100);
+        isGameOver = true;
+    } else if (Array.from(cells).every(c => c.innerHTML !== '')) {
+        setTimeout(() => {
+            alert('Draw!');
+            score.draws++;
+            updateScore();
+            resetGame();
+        }, 100);
+        isGameOver = true;
+    }
+}
 
-function aiMove(){
-    let empty = Array.from(cells).filter(c=>c.innerHTML==='');
-    if(empty.length===0) return;
+function aiMove() {
+    let emptyCells = Array.from(cells).filter(c => c.innerHTML === '');
+    if (emptyCells.length === 0 || isGameOver) return;
 
-    let bestMove = null;
+    let move;
+    // AI Logic here (simplified for this example)
+    const winningMove = findBestMove(emptyCells, 'O'); // Can AI win?
+    const blockingMove = findBestMove(emptyCells, 'X'); // Should AI block?
 
-    if(difficulty==='hard'){
-        // Minimax or more advanced AI logic for hard difficulty
-        bestMove = findBestMove(empty, 'O');
-    } else if (difficulty === 'moderate') {
-        // Block player if they are about to win, otherwise random
-        bestMove = findBlockingMove(empty, 'X') || findWinningMove(empty, 'O') || empty[Math.floor(Math.random() * empty.length)];
-    } else { // Easy
-        bestMove = empty[Math.floor(Math.random() * empty.length)];
+    if (difficulty === 'hard' && winningMove) {
+        move = winningMove;
+    } else if (difficulty === 'hard' && blockingMove) {
+        move = blockingMove;
+    } else if (difficulty === 'moderate' && blockingMove) {
+        move = blockingMove;
+    } else {
+        move = emptyCells[Math.floor(Math.random() * emptyCells.length)]; // Random move
     }
     
-    if (bestMove) {
-        bestMove.innerHTML='O';
-        turn='X'; // Switch turn back to player after AI move
-        checkResult();
-        if (!checkWinner('X') && !checkWinner('O')) {
-             if (Array.from(cells).filter(c=>c.innerHTML==='').length > 0) {
-                 startTimer(); // Start timer for player's turn
-             } else { // It's a draw if no empty cells left
-                 alert('Draw!');
-                 score.draws++;
-                 updateScore();
-                 resetGame();
-             }
-        }
+    makeMove(move, 'O');
+    if (!isGameOver) {
+        turn = 'X'; // Switch turn back to player
     }
-}
-
-// Helper functions for AI (basic implementations)
-function findWinningMove(emptyCells, player) {
-    for (let c of emptyCells) {
-        c.innerHTML = player;
-        if (checkWinner(player)) {
-            c.innerHTML = ''; // Revert
-            return c;
-        }
-        c.innerHTML = ''; // Revert
-    }
-    return null;
-}
-
-function findBlockingMove(emptyCells, player) {
-    for (let c of emptyCells) {
-        c.innerHTML = player; // Temporarily make player's move
-        if (checkWinner(player)) {
-            c.innerHTML = ''; // Revert
-            return c; // This is the cell to block
-        }
-        c.innerHTML = ''; // Revert
-    }
-    return null;
 }
 
 function findBestMove(emptyCells, player) {
-    // This is a simplified version for demonstration. A true hard AI uses Minimax.
-    // Prioritize winning moves, then blocking moves, then center, then corners, then random.
-    return findWinningMove(emptyCells, player) || // AI wins
-           findBlockingMove(emptyCells, player === 'X' ? 'O' : 'X') || // Block opponent
-           emptyCells.find(c => cells[4] === c) || // Take center if available
-           emptyCells.find(c => [cells[0], cells[2], cells[6], cells[8]].includes(c)) || // Take a corner
-           emptyCells[Math.floor(Math.random() * emptyCells.length)]; // Random
+    for (let cell of emptyCells) {
+        cell.innerHTML = player; // Test the move
+        if (checkWinner(player)) {
+            cell.innerHTML = ''; // Revert the test move
+            return cell; // Return the winning/blocking cell
+        }
+        cell.innerHTML = ''; // Revert the test move
+    }
+    return null; // No immediate winning/blocking move found
 }
 
-function checkWinner(player){
+function checkWinner(player) {
     const combos = [
-        [0,1,2],[3,4,5],[6,7,8],
-        [0,3,6],[1,4,7],[2,5,8],
-        [0,4,8],[2,4,6]
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+        [0, 4, 8], [2, 4, 6]             // diagonals
     ];
-    for(let c of combos){
-        if(cells[c[0]].innerHTML===player &&
-           cells[c[1]].innerHTML===player &&
-           cells[c[2]].innerHTML===player) return true;
+    for (let combo of combos) {
+        const [a, b, c] = combo;
+        if (cells[a].innerHTML === player &&
+            cells[b].innerHTML === player &&
+            cells[c].innerHTML === player) {
+            return true;
+        }
     }
     return false;
 }
 
-function checkResult(){
-    if(checkWinner('X')){
-        alert('You Win!');
-        score.wins++;
-        updateScore();
-        resetGame();
-    } else if(checkWinner('O')){
-        alert('You Lose!');
-        score.losses++;
-        updateScore();
-        resetGame();
-    } else if(Array.from(cells).every(c=>c.innerHTML!=='') && !checkWinner('X') && !checkWinner('O') ){
-        alert('Draw!');
-        score.draws++;
-        updateScore();
-        resetGame();
-    } else {
-        turn = (turn === 'X' ? 'O' : 'X'); // Only switch turn if game isn't over
-    }
+function resetGame() {
+    cells.forEach(c => c.innerHTML = '');
+    turn = 'X';
+    isGameOver = false;
+    updateScore();
 }
 
-function updateScore(){
-    scoreboard.textContent=`Wins: ${score.wins} | Losses: ${score.losses} | Draws: ${score.draws}`;
+function updateScore() {
+    scoreboard.textContent = `Wins: ${score.wins} | Losses: ${score.losses} | Draws: ${score.draws}`;
 }
 
-// Initial game setup
-resetGame(); // Ensure game is reset on load
-updateScore(); // Display initial score
-
+// Initial setup
+resetGame();
 </script>
 </body>
 </html>
