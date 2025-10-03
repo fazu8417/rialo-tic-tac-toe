@@ -6,16 +6,15 @@
 <title>🎮 Rialo Tic Tac Toe ✨</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-    /* Full page setup with your Rialo Branding Background */
     body {
         margin: 0;
         padding: 0;
         font-family: 'Poppins', sans-serif;
         /* ====> IMPORTANT: Yahan apni 'rialo' branding image ka exact URL daalein <==== */
-        background-image: url('https://i.imgur.com/YOUR_RIALO_BRANDING_IMAGE_URL_HERE.jpg'); /* <-- Place your image URL here */
-        background-size: cover; /* Cover the entire background */
-        background-position: center; /* Center the image */
-        background-repeat: no-repeat; /* Do not repeat the image */
+        background-image: url('https://i.imgur.com/YOUR_RIALO_BRANDING_IMAGE_URL_HERE.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -23,32 +22,21 @@
         color: #fff;
         overflow: hidden;
     }
-
-    /* Main game container */
     .container {
-        /* Container background is now slightly darker to make text and game elements pop */
-        background: rgba(10, 10, 10, 0.88); 
-        backdrop-filter: blur(5px); /* Adds a nice frosted glass effect */
+        background: rgba(10, 10, 10, 0.88);
+        backdrop-filter: blur(5px);
         border-radius: 25px;
         padding: 30px 40px;
         text-align: center;
-        /* Subtle shadow to lift the container from the background */
         box-shadow: 0 0 50px rgba(180, 180, 180, 0.4);
         max-width: 90vw;
         width: fit-content;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        /* Border color is light to complement the Rialo branding */
         border: 2px solid rgba(200, 200, 200, 0.7);
     }
-
     h1 {
         font-size: 2.5em;
         margin-bottom: 20px;
-        color: #e0e0e0; /* Off-white color to match the logo text */
+        color: #e0e0e0;
         text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     }
     label { font-weight: 600; margin-right: 10px; color: #ccc; }
@@ -63,17 +51,13 @@
         background: #333;
         color: #fff;
         font-weight: 600;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     }
-    select:hover, button:hover {
+    button:hover, select:hover {
         background: #fff;
         color: #111;
         transform: translateY(-2px);
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
     }
     button { margin-top: 25px; }
-
-    /* Game board */
     .board {
         display: grid;
         grid-template-columns: repeat(3, min(15vw, 110px));
@@ -91,28 +75,21 @@
         font-weight: bold;
         cursor: pointer;
         border-radius: 15px;
-        background: linear-gradient(45deg, #222, #444); /* Darker cells to stand out */
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+        background: linear-gradient(45deg, #222, #444);
         transition: all 0.3s ease;
-        color: #e0e0e0; /* X and O color */
-        text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        color: #e0e0e0;
         border: 1px solid rgba(255, 255, 255, 0.2);
     }
     .cell:hover {
         transform: scale(1.05);
-        box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
         background: linear-gradient(45deg, #444, #555);
     }
-
-    /* Scoreboard */
     #scoreboard {
         margin-top: 20px;
         font-size: 1.3em;
         font-weight: 600;
         color: #ddd;
     }
-
-    /* Social links at the bottom */
     .social-links {
         margin-top: 25px;
         display: flex;
@@ -135,30 +112,16 @@
         color: #fff;
         transform: translateY(-2px);
     }
-
-    /* Creator credits */
     .credits {
         margin-top: 20px;
         font-size: 0.9em;
         color: #999;
     }
-    
-    /* Responsive adjustments */
     @media (max-width: 768px) {
-        .container {
-            padding: 20px;
-            border: 1px solid rgba(200, 200, 200, 0.7);
-        }
-        h1 {
-            font-size: 1.8em;
-        }
-        .board {
-            grid-template-columns: repeat(3, min(22vw, 80px));
-        }
-        .cell {
-            width: min(22vw, 80px);
-            height: min(22vw, 80px);
-        }
+        .container { padding: 20px; }
+        h1 { font-size: 1.8em; }
+        .board { grid-template-columns: repeat(3, min(22vw, 80px)); }
+        .cell { width: min(22vw, 80px); height: min(22vw, 80px); }
     }
 </style>
 </head>
@@ -174,7 +137,128 @@
     </select>
 
     <div class="board">
-        <div class="cell" data-index="0"></div><div class="cell" data-index="1"></div><div class="cell" data-index="2"></div>
-        <div class="cell" data-index="3"></div><div class="cell" data-index="4"></div><div class="cell" data-index="5"></div>
-        <div class="cell" data-index="6"></div><div class="cell" data-index="7"></div><div class="cell" data-index="8"></div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div>
     </div>
+
+    <div id="scoreboard">Wins: 0 | Losses: 0 | Draws: 0</div>
+    <button onclick="resetGame()">Restart Game</button>
+    
+    <div class="social-links">
+        <a href="https://x.com/Xyzboy21" target="_blank">@Xyzboy21 (X)</a>
+        <a href="https://discord.gg/Fazu4718" target="_blank">fazu4718 (Discord)</a>
+    </div>
+
+    <div class="credits">Created by: @Xyzboy21 & fazu4718</div>
+</div>
+
+<script>
+const cells = document.querySelectorAll('.cell');
+const scoreboard = document.getElementById('scoreboard');
+let turn = 'X', difficulty = 'easy', isGameOver = false;
+let score = { wins: 0, losses: 0, draws: 0 };
+
+document.getElementById('difficulty').addEventListener('change', (e) => {
+    difficulty = e.target.value;
+    resetGame();
+});
+
+cells.forEach(cell => cell.addEventListener('click', handleCellClick));
+
+function handleCellClick(event) {
+    const cell = event.target;
+    if (turn === 'X' && cell.innerHTML === '' && !isGameOver) {
+        makeMove(cell, 'X');
+        if (!isGameOver) {
+            turn = 'O';
+            setTimeout(aiMove, 600);
+        }
+    }
+}
+
+function makeMove(cell, player) {
+    cell.innerHTML = player;
+    if (checkWinner(player)) {
+        isGameOver = true;
+        setTimeout(() => {
+            alert(player === 'X' ? 'You Win!' : 'You Lose!');
+            player === 'X' ? score.wins++ : score.losses++;
+            updateScore();
+            resetGame();
+        }, 100);
+    } else if (Array.from(cells).every(c => c.innerHTML !== '')) {
+        isGameOver = true;
+        setTimeout(() => {
+            alert('Draw!');
+            score.draws++;
+            updateScore();
+            resetGame();
+        }, 100);
+    }
+}
+
+function aiMove() {
+    if (isGameOver) return;
+    let emptyCells = Array.from(cells).filter(c => c.innerHTML === '');
+    if (emptyCells.length === 0) return;
+
+    let move;
+    const winningMove = findBestMove(emptyCells, 'O');
+    const blockingMove = findBestMove(emptyCells, 'X');
+
+    if (difficulty === 'hard' && winningMove) {
+        move = winningMove;
+    } else if ((difficulty === 'hard' || difficulty === 'moderate') && blockingMove) {
+        move = blockingMove;
+    } else {
+        move = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+    }
+    
+    makeMove(move, 'O');
+    if (!isGameOver) {
+        turn = 'X';
+    }
+}
+
+function findBestMove(emptyCells, player) {
+    for (let cell of emptyCells) {
+        cell.innerHTML = player;
+        if (checkWinner(player)) {
+            cell.innerHTML = '';
+            return cell;
+        }
+        cell.innerHTML = '';
+    }
+    return null;
+}
+
+function checkWinner(player) {
+    const combos = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
+    ];
+    for (let combo of combos) {
+        if (combo.every(index => cells[index].innerHTML === player)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function resetGame() {
+    cells.forEach(c => c.innerHTML = '');
+    turn = 'X';
+    isGameOver = false;
+}
+
+function updateScore() {
+    scoreboard.textContent = `Wins: ${score.wins} | Losses: ${score.losses} | Draws: ${score.draws}`;
+}
+
+// Initial setup
+updateScore();
+</script>
+</body>
+</html>
