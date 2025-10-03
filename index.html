@@ -3,115 +3,215 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rialo Tic Tac Toe</title>
+<title>🎮 Tic Tac Toe ✨</title>
 <style>
   body {
     margin:0; padding:0;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('https://your-logo-link-here.png') no-repeat center center fixed;
-    background-size: cover;
+    background: linear-gradient(135deg,#1a73e8,#43a047);
+    color:#fff;
   }
   .container {
     text-align: center;
-    background-color: rgba(255,255,255,0.9);
+    background-color: rgba(0,0,0,0.75);
     padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    border-radius: 25px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    position: relative;
   }
-  h1 { color:#1a73e8; margin-bottom:20px; }
+  h1 { font-size: 2em; margin-bottom: 15px; }
   .board {
     display: grid;
-    grid-template-columns: repeat(3,100px);
-    grid-gap:10px;
+    grid-template-columns: repeat(3,120px);
+    grid-gap:15px;
     margin: 20px auto;
   }
   .cell {
-    width:100px; height:100px;
+    width:120px; height:120px;
     display:flex;
     justify-content:center;
     align-items:center;
-    font-size:2em; font-weight:bold;
+    font-size:2.5em; font-weight:bold;
     cursor:pointer;
-    border-radius:15px;
-    transition:0.3s;
+    border-radius:20px;
+    transition: all 0.3s;
     color:#fff;
+    background: linear-gradient(45deg,#f94144,#f3722c);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
   }
-  .cell:nth-child(1){background:#f94144;}
-  .cell:nth-child(2){background:#f3722c;}
-  .cell:nth-child(3){background:#f9c74f; color:#000;}
-  .cell:nth-child(4){background:#90be6d;}
-  .cell:nth-child(5){background:#43aa8b;}
-  .cell:nth-child(6){background:#577590;}
-  .cell:nth-child(7){background:#f72585;}
-  .cell:nth-child(8){background:#7209b7;}
-  .cell:nth-child(9){background:#3a0ca3;}
-  .cell:hover{transform:scale(1.1);}
+  .cell:nth-child(2){background: linear-gradient(45deg,#f3722c,#f9c74f);}
+  .cell:nth-child(3){background: linear-gradient(45deg,#f9c74f,#90be6d);}
+  .cell:nth-child(4){background: linear-gradient(45deg,#90be6d,#43aa8b);}
+  .cell:nth-child(5){background: linear-gradient(45deg,#43aa8b,#577590);}
+  .cell:nth-child(6){background: linear-gradient(45deg,#577590,#f72585);}
+  .cell:nth-child(7){background: linear-gradient(45deg,#f72585,#7209b7);}
+  .cell:nth-child(8){background: linear-gradient(45deg,#7209b7,#3a0ca3);}
+  .cell:nth-child(9){background: linear-gradient(45deg,#3a0ca3,#1a73e8);}
+  .cell:hover{transform: scale(1.1) rotate(3deg); box-shadow:0 6px 15px rgba(0,0,0,0.6);}
   button, select{
     margin-top:20px; padding:10px 25px;
     font-size:1em; border:none; border-radius:10px;
     background:#1a73e8; color:#fff; cursor:pointer;
-    transition:0.3s;
+    transition: all 0.3s;
   }
   button:hover, select:hover{background:#155ab6;}
-  label{font-weight:bold;}
+  #scoreboard{
+    margin-top:10px;
+    font-size:1.2em;
+  }
+  #timer{margin-top:10px; font-size:1.1em; font-weight:bold;}
+  .social-links{
+    position: absolute;
+    top:10px; right:10px;
+    display: flex; flex-direction: column; gap:8px;
+  }
+  .social-links a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:bold;
+    background:rgba(255,255,255,0.15);
+    padding:5px 10px;
+    border-radius:8px;
+    transition:0.3s;
+  }
+  .social-links a:hover{
+    background:rgba(255,255,255,0.35);
+  }
 </style>
 </head>
 <body>
 <div class="container">
-<h1>Rialo Tic Tac Toe</h1>
+  <h1>🎮 Tic Tac Toe ✨</h1>
 
-<label for="difficulty">Select Difficulty:</label>
-<select id="difficulty">
-  <option value="easy">Easy</option>
-  <option value="moderate">Moderate</option>
-  <option value="hard">Hard (Tie)</option>
-</select>
+  <label for="difficulty">Select Difficulty:</label>
+  <select id="difficulty">
+    <option value="easy">Easy</option>
+    <option value="moderate">Moderate</option>
+    <option value="hard">Hard</option>
+  </select>
 
-<div class="board">
-  <div class="cell"></div><div class="cell"></div><div class="cell"></div>
-  <div class="cell"></div><div class="cell"></div><div class="cell"></div>
-  <div class="cell"></div><div class="cell"></div><div class="cell"></div>
-</div>
-<button onclick="resetGame()">Restart Game</button>
+  <div class="board">
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+  </div>
+
+  <div id="scoreboard">Wins: 0 | Losses: 0 | Draws: 0</div>
+  <div id="timer">Time left: 10s</div>
+  <button onclick="resetGame()">Restart Game</button>
+
+  <div class="social-links">
+    <a href="https://x.com/RialoHQ" target="_blank">Twitter</a>
+    <a href="https://discord.gg/RialoProtocol" target="_blank">Discord</a>
+    <a href="https://t.me/rialoprotocol" target="_blank">Telegram</a>
+  </div>
 </div>
 
 <script>
-let turn = 'X';
-let difficulty = 'easy';
 const cells = document.querySelectorAll('.cell');
+const scoreboard = document.getElementById('scoreboard');
+const timerDisplay = document.getElementById('timer');
+let turn='X', difficulty='easy';
+let score={wins:0,losses:0,draws:0};
+let timer;
 
-document.getElementById('difficulty').addEventListener('change', (e)=>{
+document.getElementById('difficulty').addEventListener('change',(e)=>{
   difficulty = e.target.value;
   resetGame();
 });
 
+function resetGame(){
+  cells.forEach(c=>c.innerHTML='');
+  turn='X';
+  clearInterval(timer);
+  startTimer();
+}
+
+function startTimer(){
+  let timeLeft=10;
+  timerDisplay.textContent=`Time left: ${timeLeft}s`;
+  timer = setInterval(()=>{
+    timeLeft--;
+    timerDisplay.textContent=`Time left: ${timeLeft}s`;
+    if(timeLeft<=0){
+      clearInterval(timer);
+      if(difficulty!=='easy') aiMove();
+      startTimer();
+    }
+  },1000);
+}
+
 function makeMove(cell){
   if(cell.innerHTML===''){
     cell.innerHTML=turn;
-    if(difficulty==='hard'){makeHardMove();}
-    turn=turn==='X'?'O':'X';
+    checkResult();
+    if(difficulty!=='easy') aiMove();
+    else turn = turn==='X'?'O':'X';
+    clearInterval(timer);
+    startTimer();
   }
 }
 
 cells.forEach(c=>c.addEventListener('click',()=>makeMove(c)));
 
-function resetGame(){
-  cells.forEach(c=>c.innerHTML='');
-  turn='X';
-}
-
-// Hard mode logic: fill cells to ensure tie
-function makeHardMove(){
+function aiMove(){
   let empty = Array.from(cells).filter(c=>c.innerHTML==='');
   if(empty.length>0){
-    // Randomly fill one empty cell for opponent
-    let cell = empty[Math.floor(Math.random()*empty.length)];
-    cell.innerHTML = turn==='X'?'O':'X';
+    if(difficulty==='hard'){
+      // Hard mode: smart blocking + tie prevention
+      for(let c of empty){
+        c.innerHTML='O';
+        if(checkWinner('O') || checkWinner('X')){ c.innerHTML=''; continue; }
+        c.innerHTML='O'; break;
+      }
+    } else {
+      let cell = empty[Math.floor(Math.random()*empty.length)];
+      cell.innerHTML='O';
+    }
+    checkResult();
+    turn='X';
   }
+}
+
+function checkWinner(player){
+  const combos = [
+    [0,1,2],[3,4,5],[6,7,8],
+    [0,3,6],[1,4,7],[2,5,8],
+    [0,4,8],[2,4,6]
+  ];
+  for(let c of combos){
+    if(cells[c[0]].innerHTML===player &&
+       cells[c[1]].innerHTML===player &&
+       cells[c[2]].innerHTML===player) return true;
+  }
+  return false;
+}
+
+function checkResult(){
+  if(checkWinner('X')){
+    alert('You Win!');
+    score.wins++;
+    updateScore();
+    resetGame();
+  } else if(checkWinner('O')){
+    alert('You Lose!');
+    score.losses++;
+    updateScore();
+    resetGame();
+  } else if(Array.from(cells).every(c=>c.innerHTML!=='') ){
+    alert('Draw!');
+    score.draws++;
+    updateScore();
+    resetGame();
+  }
+}
+
+function updateScore(){
+  scoreboard.textContent=`Wins: ${score.wins} | Losses: ${score.losses} | Draws: ${score.draws}`;
 }
 </script>
 </body>
