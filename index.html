@@ -5,82 +5,91 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🎮 Tic Tac Toe ✨</title>
 <style>
+  /* Full page setup */
   body {
     margin:0; padding:0;
     font-family: 'Arial', sans-serif;
-    height: 100vh;
+    background: linear-gradient(135deg,#1a73e8,#43a047);
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg,#1a73e8,#43a047);
-    color:#fff;
+    min-height: 100vh;
+    color: #fff;
+    overflow: hidden;
   }
+
+  /* Main container */
   .container {
-    text-align: center;
-    background-color: rgba(0,0,0,0.75);
-    padding: 30px;
+    background: rgba(0,0,0,0.8);
     border-radius: 25px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
+    width: 400px;
     position: relative;
   }
-  h1 { font-size: 2em; margin-bottom: 15px; }
+
+  h1 { font-size: 2.2em; margin-bottom: 20px; }
+  label { font-weight: bold; }
+  select, button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  select:hover, button:hover { background:#155ab6; color:#fff; }
+  button { background:#1a73e8; color:#fff; margin-top: 20px; }
+
+  /* Game board */
   .board {
     display: grid;
-    grid-template-columns: repeat(3,120px);
-    grid-gap:15px;
-    margin: 20px auto;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 12px;
+    justify-content: center;
+    margin-top: 25px;
   }
   .cell {
-    width:120px; height:120px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:2.5em; font-weight:bold;
-    cursor:pointer;
-    border-radius:20px;
-    transition: all 0.3s;
-    color:#fff;
+    width: 100px; height: 100px;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 2.5em; font-weight: bold;
+    cursor: pointer; border-radius: 15px;
     background: linear-gradient(45deg,#f94144,#f3722c);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-  }
-  .cell:nth-child(2){background: linear-gradient(45deg,#f3722c,#f9c74f);}
-  .cell:nth-child(3){background: linear-gradient(45deg,#f9c74f,#90be6d);}
-  .cell:nth-child(4){background: linear-gradient(45deg,#90be6d,#43aa8b);}
-  .cell:nth-child(5){background: linear-gradient(45deg,#43aa8b,#577590);}
-  .cell:nth-child(6){background: linear-gradient(45deg,#577590,#f72585);}
-  .cell:nth-child(7){background: linear-gradient(45deg,#f72585,#7209b7);}
-  .cell:nth-child(8){background: linear-gradient(45deg,#7209b7,#3a0ca3);}
-  .cell:nth-child(9){background: linear-gradient(45deg,#3a0ca3,#1a73e8);}
-  .cell:hover{transform: scale(1.1) rotate(3deg); box-shadow:0 6px 15px rgba(0,0,0,0.6);}
-  button, select{
-    margin-top:20px; padding:10px 25px;
-    font-size:1em; border:none; border-radius:10px;
-    background:#1a73e8; color:#fff; cursor:pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     transition: all 0.3s;
   }
-  button:hover, select:hover{background:#155ab6;}
-  #scoreboard{
-    margin-top:10px;
-    font-size:1.2em;
-  }
-  #timer{margin-top:10px; font-size:1.1em; font-weight:bold;}
-  .social-links{
+  .cell:hover { transform: scale(1.1) rotate(3deg); box-shadow:0 6px 15px rgba(0,0,0,0.6); }
+  .cell:nth-child(2){background:linear-gradient(45deg,#f3722c,#f9c74f);}
+  .cell:nth-child(3){background:linear-gradient(45deg,#f9c74f,#90be6d);}
+  .cell:nth-child(4){background:linear-gradient(45deg,#90be6d,#43aa8b);}
+  .cell:nth-child(5){background:linear-gradient(45deg,#43aa8b,#577590);}
+  .cell:nth-child(6){background:linear-gradient(45deg,#577590,#f72585);}
+  .cell:nth-child(7){background:linear-gradient(45deg,#f72585,#7209b7);}
+  .cell:nth-child(8){background:linear-gradient(45deg,#7209b7,#3a0ca3);}
+  .cell:nth-child(9){background:linear-gradient(45deg,#3a0ca3,#1a73e8);}
+
+  /* Scoreboard and timer */
+  #scoreboard, #timer { margin-top: 15px; font-size: 1.2em; font-weight: bold; }
+
+  /* Social links on right side */
+  .social-links {
     position: absolute;
-    top:10px; right:10px;
-    display: flex; flex-direction: column; gap:8px;
+    top: 20px; right: 20px;
+    display: flex; flex-direction: column; gap:10px;
   }
-  .social-links a{
-    color:#fff;
-    text-decoration:none;
+  .social-links a {
+    color: #fff; text-decoration:none;
     font-weight:bold;
-    background:rgba(255,255,255,0.15);
-    padding:5px 10px;
-    border-radius:8px;
-    transition:0.3s;
+    background: rgba(255,255,255,0.15);
+    padding: 6px 12px; border-radius: 8px;
+    transition: 0.3s;
   }
-  .social-links a:hover{
-    background:rgba(255,255,255,0.35);
-  }
+  .social-links a:hover { background: rgba(255,255,255,0.35); }
+
+  /* Creator credits */
+  .credits { margin-top:20px; font-size:0.9em; color:#ccc; }
 </style>
 </head>
 <body>
@@ -105,10 +114,12 @@
   <button onclick="resetGame()">Restart Game</button>
 
   <div class="social-links">
-    <a href="https://x.com/RialoHQ" target="_blank">Twitter</a>
-    <a href="https://discord.gg/RialoProtocol" target="_blank">Discord</a>
+    <a href="https://x.com/Xyzboy21" target="_blank">X / Twitter</a>
+    <a href="https://discord.gg/Fazu4718" target="_blank">Discord</a>
     <a href="https://t.me/rialoprotocol" target="_blank">Telegram</a>
   </div>
+
+  <div class="credits">Created by: @Xyzboy21 & Fazu4718</div>
 </div>
 
 <script>
@@ -117,7 +128,7 @@ const scoreboard = document.getElementById('scoreboard');
 const timerDisplay = document.getElementById('timer');
 let turn='X', difficulty='easy';
 let score={wins:0,losses:0,draws:0};
-let timer;
+let timerActive = false;
 
 document.getElementById('difficulty').addEventListener('change',(e)=>{
   difficulty = e.target.value;
@@ -127,54 +138,52 @@ document.getElementById('difficulty').addEventListener('change',(e)=>{
 function resetGame(){
   cells.forEach(c=>c.innerHTML='');
   turn='X';
-  clearInterval(timer);
-  startTimer();
+  timerDisplay.textContent='Time left: 10s';
+  timerActive=false;
 }
 
+// Timer per move (only counts while user can play)
 function startTimer(){
   let timeLeft=10;
+  timerActive=true;
   timerDisplay.textContent=`Time left: ${timeLeft}s`;
-  timer = setInterval(()=>{
+  const timerInterval = setInterval(()=>{
+    if(!timerActive){ clearInterval(timerInterval); return; }
     timeLeft--;
     timerDisplay.textContent=`Time left: ${timeLeft}s`;
-    if(timeLeft<=0){
-      clearInterval(timer);
-      if(difficulty!=='easy') aiMove();
-      startTimer();
-    }
+    if(timeLeft<=0){ clearInterval(timerInterval); timerActive=false; }
   },1000);
 }
 
 function makeMove(cell){
   if(cell.innerHTML===''){
     cell.innerHTML=turn;
+    timerActive=false; // stop timer
     checkResult();
-    if(difficulty!=='easy') aiMove();
-    else turn = turn==='X'?'O':'X';
-    clearInterval(timer);
-    startTimer();
+    setTimeout(()=>{ if(!checkWinner('X') && !checkWinner('O')) aiMove(); }, 500); // micro-delay for realism
   }
 }
 
-cells.forEach(c=>c.addEventListener('click',()=>makeMove(c)));
+cells.forEach(c=>c.addEventListener('click',()=>{
+  if(!timerActive) startTimer();
+  makeMove(event.target);
+}));
 
 function aiMove(){
   let empty = Array.from(cells).filter(c=>c.innerHTML==='');
-  if(empty.length>0){
-    if(difficulty==='hard'){
-      // Hard mode: smart blocking + tie prevention
-      for(let c of empty){
-        c.innerHTML='O';
-        if(checkWinner('O') || checkWinner('X')){ c.innerHTML=''; continue; }
-        c.innerHTML='O'; break;
-      }
-    } else {
-      let cell = empty[Math.floor(Math.random()*empty.length)];
-      cell.innerHTML='O';
+  if(empty.length===0) return;
+  if(difficulty==='hard'){
+    // block player smartly
+    for(let c of empty){
+      c.innerHTML='O';
+      if(checkWinner('O') || checkWinner('X')){ c.innerHTML=''; continue; }
+      c.innerHTML='O'; break;
     }
-    checkResult();
-    turn='X';
+  } else {
+    let cell = empty[Math.floor(Math.random()*empty.length)];
+    cell.innerHTML='O';
   }
+  checkResult();
 }
 
 function checkWinner(player){
