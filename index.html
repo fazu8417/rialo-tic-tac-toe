@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rialo Tic Tac Toe</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; }
+    h1 { color: #4CAF50; }
+    .board { display: grid; grid-template-columns: repeat(3, 100px); margin: 20px auto; }
+    .cell {
+      width: 100px; height: 100px; border: 2px solid #333;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2em; cursor: pointer;
+    }
+    .cell.taken { pointer-events: none; }
+    #message { margin-top: 20px; font-weight: bold; }
+    button { margin-top: 20px; padding: 10px 20px; font-size: 1em; }
+  </style>
+</head>
+<body>
+  <h1>Rialo Tic Tac Toe</h1>
+  <div class="board" id="board"></div>
+  <p id="message">Player X's turn</p>
+  <button onclick="restartGame()">Restart Game</button>
+
+  <script>
+    const board = document.getElementById("board");
+    const message = document.getElementById("message");
+    let currentPlayer = "X";
+    let cells = Array(9).fill(null);
+
+    function checkWinner() {
+      const wins = [
+        [0,1,2],[3,4,5],[6,7,8],
+        [0,3,6],[1,4,7],[2,5,8],
+        [0,4,8],[2,4,6]
+      ];
+      for (let [a,b,c] of wins) {
+        if (cells[a] && cells[a] === cells[b] && cells[a] === cells[c]) {
+          return cells[a];
+        }
+      }
+      return cells.every(cell => cell) ? "Draw" : null;
+    }
+
+    function handleClick(i, div) {
+      if (!cells[i]) {
+        cells[i] = currentPlayer;
+        div.textContent = currentPlayer;
+        div.classList.add("taken");
+
+        let winner = checkWinner();
+        if (winner) {
+          message.textContent = winner === "Draw" ? "It's a Draw!" : `Player ${winner} Wins!`;
+          document.querySelectorAll(".cell").forEach(c => c.classList.add("taken"));
+        } else {
+          currentPlayer = currentPlayer === "X" ? "O" : "X";
+          message.textContent = `Player ${currentPlayer}'s turn`;
+        }
+      }
+    }
+
+    function restartGame() {
+      cells.fill(null);
+      board.innerHTML = "";
+      message.textContent = "Player X's turn";
+      currentPlayer = "X";
+      for (let i = 0; i < 9; i++) {
+        let div = document.createElement("div");
+        div.className = "cell";
+        div.onclick = () => handleClick(i, div);
+        board.appendChild(div);
+      }
+    }
+
+    restartGame();
+  </script>
+</body>
+</html>
