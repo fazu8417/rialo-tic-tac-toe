@@ -6,13 +6,13 @@
 <title>🎮 Rialo Tic Tac Toe ✨</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-    /* Full page setup with Rialo Background */
+    /* Full page setup with your new Rialo Background */
     body {
         margin: 0;
         padding: 0;
         font-family: 'Poppins', sans-serif;
-        /* Replace with your actual image path or URL */
-        background-image: url('https://i.imgur.com/example.png'); /* <<-- Yahan apni Rialo background image ka URL daalein */
+        /* ====> IMPORTANT: Yahan apni new 'rialo' background image ka URL daalein <==== */
+        background-image: url('https://i.imgur.com/YOUR_IMAGE_CODE.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -24,13 +24,14 @@
         overflow: hidden;
     }
 
-    /* Main container */
+    /* Main game container */
     .container {
-        background: rgba(0, 0, 0, 0.85);
+        background: rgba(10, 10, 10, 0.88); /* Slightly darker for better contrast */
+        backdrop-filter: blur(5px);
         border-radius: 25px;
         padding: 30px 40px;
         text-align: center;
-        box-shadow: 0 0 50px rgba(0, 255, 255, 0.5);
+        box-shadow: 0 0 50px rgba(180, 180, 180, 0.4);
         max-width: 90vw;
         width: fit-content;
         position: relative;
@@ -38,34 +39,34 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        border: 2px solid rgba(0, 255, 255, 0.7);
+        border: 2px solid rgba(200, 200, 200, 0.7);
     }
 
     h1 {
         font-size: 2.5em;
         margin-bottom: 20px;
-        color: #00ffff;
-        text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        color: #e0e0e0; /* Off-white color to match the logo */
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     }
-    label { font-weight: 600; margin-right: 10px; }
+    label { font-weight: 600; margin-right: 10px; color: #ccc; }
     select, button {
         margin-top: 15px;
         padding: 12px 25px;
         font-size: 1.1em;
         border-radius: 10px;
-        border: 1px solid #00ffff;
+        border: 1px solid #aaa;
         cursor: pointer;
         transition: all 0.3s ease;
-        background: #1a73e8;
+        background: #333;
         color: #fff;
         font-weight: 600;
-        box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     }
     select:hover, button:hover {
-        background: #00ffff;
-        color: #1a73e8;
+        background: #fff;
+        color: #111;
         transform: translateY(-2px);
-        box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
     }
     button { margin-top: 25px; }
 
@@ -87,47 +88,47 @@
         font-weight: bold;
         cursor: pointer;
         border-radius: 15px;
-        background: linear-gradient(45deg, #2a0c4e, #4f0a7b);
+        background: linear-gradient(45deg, #222, #444);
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
         transition: all 0.3s ease;
-        color: #00ffff;
-        text-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
-        border: 1px solid rgba(0, 255, 255, 0.3);
+        color: #e0e0e0;
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
     .cell:hover {
         transform: scale(1.05);
-        box-shadow: 0 6px 20px rgba(0, 255, 255, 0.5);
-        background: linear-gradient(45deg, #4f0a7b, #6a0e9a);
+        box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+        background: linear-gradient(45deg, #444, #555);
     }
 
-    /* Scoreboard and timer */
-    #scoreboard, #timer {
+    /* Scoreboard */
+    #scoreboard {
         margin-top: 20px;
         font-size: 1.3em;
         font-weight: 600;
-        color: #00ffff;
+        color: #ddd;
     }
 
-    /* Social links inside the container */
+    /* Social links at the bottom */
     .social-links {
         margin-top: 25px;
         display: flex;
         gap: 15px;
         justify-content: center;
-        flex-wrap: wrap; /* Allows wrapping on small screens */
+        flex-wrap: wrap;
     }
     .social-links a {
-        color: #a0ffff;
+        color: #bbb;
         text-decoration: none;
         font-weight: 500;
-        background: rgba(0, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.05);
         padding: 8px 15px;
         border-radius: 10px;
-        border: 1px solid rgba(0, 255, 255, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         transition: all 0.3s ease;
     }
     .social-links a:hover {
-        background: rgba(0, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.2);
         color: #fff;
         transform: translateY(-2px);
     }
@@ -136,13 +137,14 @@
     .credits {
         margin-top: 20px;
         font-size: 0.9em;
-        color: #a0ffff;
+        color: #999;
     }
     
     /* Responsive adjustments */
     @media (max-width: 768px) {
         .container {
             padding: 20px;
+            border: 1px solid rgba(200, 200, 200, 0.7);
         }
         h1 {
             font-size: 1.8em;
@@ -175,13 +177,11 @@
     </div>
 
     <div id="scoreboard">Wins: 0 | Losses: 0 | Draws: 0</div>
-    <div id="timer">Time left: 10s</div>
     <button onclick="resetGame()">Restart Game</button>
     
     <div class="social-links">
         <a href="https://x.com/Xyzboy21" target="_blank">@Xyzboy21 (X)</a>
         <a href="https://discord.gg/Fazu4718" target="_blank">fazu4718 (Discord)</a>
-        <a href="https://t.me/rialoprotocol" target="_blank">Telegram</a>
     </div>
 
     <div class="credits">Created by: @Xyzboy21 & fazu4718</div>
@@ -190,7 +190,6 @@
 <script>
 const cells = document.querySelectorAll('.cell');
 const scoreboard = document.getElementById('scoreboard');
-const timerDisplay = document.getElementById('timer');
 let turn = 'X';
 let difficulty = 'easy';
 let score = { wins: 0, losses: 0, draws: 0 };
@@ -208,13 +207,11 @@ cells.forEach(cell => {
 
 function handleCellClick(event) {
     const cell = event.target;
-    // Player can only move if it's their turn, the cell is empty, and the game is not over
     if (turn === 'X' && cell.innerHTML === '' && !isGameOver) {
         makeMove(cell, 'X');
-        // If the game is not over after the player's move, let the AI move
         if (!isGameOver) {
-            turn = 'O'; // Switch turn to AI
-            setTimeout(aiMove, 600); // AI moves after a short delay
+            turn = 'O';
+            setTimeout(aiMove, 600);
         }
     }
 }
@@ -222,66 +219,64 @@ function handleCellClick(event) {
 function makeMove(cell, player) {
     cell.innerHTML = player;
     if (checkWinner(player)) {
-        setTimeout(() => { // Delay alert to show the winning move
+        isGameOver = true;
+        setTimeout(() => {
             alert(player === 'X' ? 'You Win!' : 'You Lose!');
             player === 'X' ? score.wins++ : score.losses++;
             updateScore();
             resetGame();
         }, 100);
-        isGameOver = true;
     } else if (Array.from(cells).every(c => c.innerHTML !== '')) {
+        isGameOver = true;
         setTimeout(() => {
             alert('Draw!');
             score.draws++;
             updateScore();
             resetGame();
         }, 100);
-        isGameOver = true;
     }
 }
 
 function aiMove() {
+    if (isGameOver) return;
     let emptyCells = Array.from(cells).filter(c => c.innerHTML === '');
-    if (emptyCells.length === 0 || isGameOver) return;
+    if (emptyCells.length === 0) return;
 
     let move;
-    // AI Logic here (simplified for this example)
-    const winningMove = findBestMove(emptyCells, 'O'); // Can AI win?
-    const blockingMove = findBestMove(emptyCells, 'X'); // Should AI block?
+    const winningMove = findBestMove(emptyCells, 'O');
+    const blockingMove = findBestMove(emptyCells, 'X');
 
     if (difficulty === 'hard' && winningMove) {
         move = winningMove;
-    } else if (difficulty === 'hard' && blockingMove) {
-        move = blockingMove;
-    } else if (difficulty === 'moderate' && blockingMove) {
+    } else if ((difficulty === 'hard' || difficulty === 'moderate') && blockingMove) {
         move = blockingMove;
     } else {
-        move = emptyCells[Math.floor(Math.random() * emptyCells.length)]; // Random move
+        move = emptyCells[Math.floor(Math.random() * emptyCells.length)];
     }
     
     makeMove(move, 'O');
     if (!isGameOver) {
-        turn = 'X'; // Switch turn back to player
+        turn = 'X';
     }
 }
 
 function findBestMove(emptyCells, player) {
     for (let cell of emptyCells) {
-        cell.innerHTML = player; // Test the move
+        cell.innerHTML = player;
         if (checkWinner(player)) {
-            cell.innerHTML = ''; // Revert the test move
-            return cell; // Return the winning/blocking cell
+            cell.innerHTML = '';
+            return cell;
         }
-        cell.innerHTML = ''; // Revert the test move
+        cell.innerHTML = '';
     }
-    return null; // No immediate winning/blocking move found
+    return null;
 }
 
 function checkWinner(player) {
     const combos = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
-        [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
-        [0, 4, 8], [2, 4, 6]             // diagonals
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
     ];
     for (let combo of combos) {
         const [a, b, c] = combo;
@@ -302,7 +297,7 @@ function resetGame() {
 }
 
 function updateScore() {
-    scoreboard.textContent = `Wins: ${score.wins} | Losses: ${score.losses} | Draws: ${score.draws}`;
+    scoreboard.textContent = `Wins: ${score.wins} | Losses: 0 | Draws: ${score.draws}`;
 }
 
 // Initial setup
